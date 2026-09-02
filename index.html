@@ -15,6 +15,7 @@
     --sky-soft:#E2F3FA;
     --leaf:#7FAE28;
     --leaf-soft:#EEF5DF;
+    --leaf-ink:#4A6B14;
     --stone:#8E9497;
     --stone-soft:#EDEEEE;
     --dummy:#B5792A;
@@ -36,6 +37,7 @@
       --sky-soft:#183642;
       --leaf:#9CCB4B;
       --leaf-soft:#26311A;
+      --leaf-ink:#CBE79A;
       --stone:#9AA0A2;
       --stone-soft:#2B2E2F;
       --dummy:#E3A15A;
@@ -48,7 +50,7 @@
     --paper:#181614; --surface:#221F1B; --surface-2:#2A2621; --ink:#F2EEE6;
     --muted:#B3AB9C; --line:#39342C; --line-strong:#4E473B;
     --sky:#4FBBE8; --sky-ink:#BFE9F8; --sky-soft:#183642;
-    --leaf:#9CCB4B; --leaf-soft:#26311A;
+    --leaf:#9CCB4B; --leaf-soft:#26311A; --leaf-ink:#CBE79A;
     --stone:#9AA0A2; --stone-soft:#2B2E2F;
     --dummy:#E3A15A; --dummy-soft:#3A2A17; --dummy-line:#6B4F2C;
     --focus:#4FBBE8;
@@ -116,13 +118,12 @@
     align-items:flex-end;
     gap:.3rem;
   }
-  .kicker{
+  .kicker.pill-tag{
     font-family:"IBM Plex Mono", ui-monospace, monospace;
     font-size:.6rem;
     letter-spacing:.03em;
     text-transform:uppercase;
-    color:var(--muted);
-    white-space:nowrap;
+    padding:.35em .75em;
   }
   .nav-btn.gated{
     background:transparent;
@@ -159,17 +160,16 @@
     position:relative;
     overflow:hidden;
     background:linear-gradient(180deg, var(--sky-soft) 0%, var(--paper) 88%);
-    padding:0 0 2.4rem;
+    padding:2rem 0 2.4rem;
   }
   .hero-scene{
-    position:relative;
-    height:clamp(150px,26vw,230px);
-    width:100%;
+    width:min(300px, 55vw);
+    margin:0 0 1.3rem;
   }
-  .hero-scene svg{ position:absolute; inset:0; width:100%; height:100%; display:block; }
+  .hero-scene svg{ width:100%; height:auto; display:block; }
   .hero-copy{
     max-width:920px;
-    margin:1.6rem auto 0;
+    margin:0 auto;
     padding:0 clamp(16px,4vw,40px);
   }
   .hero-copy h1{
@@ -237,7 +237,7 @@
     display:flex;
     gap:.4rem;
     border-bottom:1px solid var(--line);
-    margin-bottom:1.4rem;
+    margin:1.6rem 0 1.4rem;
     overflow-x:auto;
   }
   .tab{
@@ -274,39 +274,26 @@
   }
   .panel-note .star{ color:var(--stone); }
 
-  .tech-box{
-    display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(190px,1fr));
-    gap:.9rem;
-    background:var(--stone-soft);
-    border:1px solid var(--line-strong);
-    border-radius:10px;
-    padding:1rem 1.15rem;
+  .pill-tag{
+    display:inline-flex;
+    align-items:center;
+    background:#FFEC5C;
+    color:#3A3200;
+    font-family:"Karla", sans-serif;
+    font-weight:700;
+    border-radius:999px;
+    box-shadow:0 1px 2px rgba(0,0,0,.16), 0 1px 0 rgba(0,0,0,.05);
+    white-space:nowrap;
+  }
+  .tech-tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:.5rem;
     margin:0 0 1.6rem;
   }
-  .tech-box .tech-title{
-    grid-column:1 / -1;
-    font-family:"IBM Plex Mono", ui-monospace, monospace;
-    font-size:.68rem;
-    letter-spacing:.06em;
-    text-transform:uppercase;
-    color:var(--stone);
-    margin:0 0 .1rem;
-    display:flex;
-    align-items:center;
-    gap:.5em;
-  }
-  .tech-box .tech-title::before{ content:"*"; color:var(--stone); font-family:"Karla",sans-serif; font-size:1rem; }
-  .tech-item{ display:flex; flex-direction:column; gap:.15rem; }
-  .tech-item .name{
-    font-weight:700;
-    font-size:.86rem;
-    color:var(--ink);
-  }
-  .tech-item .desc{
-    font-size:.76rem;
-    color:var(--muted);
-    line-height:1.35;
+  .tech-tags .pill-tag{
+    font-size:.74rem;
+    padding:.4em .85em;
   }
 
   /* ---------- Karten ---------- */
@@ -362,7 +349,7 @@
     padding:.28em .5em;
     border-radius:4px;
   }
-  .tag.confirmed{ background:var(--leaf-soft); color:#4A6B14; border:1px solid var(--leaf); }
+  .tag.confirmed{ background:var(--leaf-soft); color:var(--leaf-ink); border:1px solid var(--leaf); }
   .tag.dummy-tag{ background:var(--dummy); color:#fff; }
   .card-foot{
     display:flex;
@@ -420,6 +407,138 @@
   @media (prefers-reduced-motion:no-preference){
     .card, .nav-btn{ transition:border-color .15s ease, transform .15s ease; }
   }
+
+  /* ---------- Views (Suche vs. Eintrage-Formulare) ---------- */
+  .view{ display:none; }
+  .view.active{ display:block; }
+
+  .formpage{
+    max-width:600px;
+    margin:0 auto;
+    padding:clamp(28px,5vw,56px) clamp(16px,4vw,40px) 5rem;
+  }
+  .back-link{
+    display:inline-block;
+    font-size:.86rem;
+    color:var(--muted);
+    text-decoration:underline;
+    margin-bottom:1.4rem;
+    background:none;
+    border:none;
+    cursor:pointer;
+    padding:0;
+  }
+  .formpage h1{
+    font-size:clamp(1.5rem,3.5vw,2rem);
+    font-weight:800;
+    margin:0 0 .5rem;
+  }
+  .formpage .lede{
+    color:var(--muted);
+    max-width:56ch;
+    margin:0 0 1.3rem;
+  }
+  .privacy-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:.5em;
+    background:var(--leaf-soft);
+    border:1px solid var(--leaf);
+    color:var(--leaf-ink);
+    font-size:.8rem;
+    font-weight:700;
+    padding:.5em .85em;
+    border-radius:8px;
+    margin:0 0 1.8rem;
+  }
+
+  .field-group{
+    display:flex;
+    flex-direction:column;
+    gap:1.2rem;
+    margin-bottom:1.5rem;
+  }
+  .field label{
+    display:block;
+    font-weight:700;
+    font-size:.9rem;
+    margin-bottom:.4rem;
+  }
+  .field .hint{
+    display:block;
+    font-weight:400;
+    color:var(--muted);
+    font-size:.8rem;
+    margin-top:.2rem;
+  }
+  .field input[type="text"], .field input[type="url"], .field textarea{
+    width:100%;
+    font-family:"Karla", sans-serif;
+    font-size:.95rem;
+    color:var(--ink);
+    background:var(--surface);
+    border:1.5px solid var(--line-strong);
+    border-radius:8px;
+    padding:.7em .85em;
+  }
+  .field textarea{ min-height:110px; resize:vertical; line-height:1.5; }
+  .field input:focus, .field textarea:focus{
+    outline:2px solid var(--focus);
+    outline-offset:1px;
+    border-color:var(--sky);
+  }
+
+  .submit-btn{
+    background:var(--sky);
+    color:#fff;
+    border:none;
+    font-weight:700;
+    font-size:.95rem;
+    padding:.75em 1.5em;
+    border-radius:8px;
+    cursor:pointer;
+  }
+
+  form.entry-form.hidden{ display:none; }
+
+  .processing{
+    display:none;
+    align-items:center;
+    gap:1rem;
+    padding:1.2rem 0;
+  }
+  .processing.active{ display:flex; }
+  .spinner{
+    width:26px;
+    height:26px;
+    flex:none;
+    border-radius:50%;
+    border:3px solid var(--line-strong);
+    border-top-color:var(--sky);
+    animation:girare .8s linear infinite;
+  }
+  @media (prefers-reduced-motion:reduce){
+    .spinner{ animation:none; border-top-color:var(--sky); }
+  }
+  @keyframes girare{ to{ transform:rotate(360deg); } }
+  .processing p{ margin:0; color:var(--muted); font-size:.92rem; }
+
+  .success{ display:none; }
+  .success.active{ display:block; }
+  .success .tick{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    background:var(--leaf-soft);
+    color:var(--leaf-ink);
+    font-weight:800;
+    margin-bottom:.9rem;
+  }
+  .success h2{ font-size:1.15rem; margin:0 0 .4rem; }
+  .success p{ color:var(--muted); margin:0; max-width:52ch; }
 </style>
 
 <p class="concept-flag">KONZEPT-ANSICHT — BEISPIELDATEN, KEINE ECHTEN ANGEBOTE</p>
@@ -439,23 +558,25 @@
   </div>
   <nav class="actions">
     <div class="action-group">
-      <span class="kicker">Für Eltern / Ehemalige / Unternehmen</span>
-      <a class="nav-btn" href="#">Ich kann einen Platz anbieten</a>
+      <span class="kicker pill-tag">Für Eltern / Ehemalige / Unternehmen</span>
+      <a class="nav-btn view-link" href="#" data-view="eltern">Ich kann einen Platz anbieten</a>
     </div>
     <div class="action-group">
-      <span class="kicker">Für Schüler*innen</span>
-      <a class="nav-btn primary" href="#">Mein Praktikum eintragen und bewerten</a>
+      <span class="kicker pill-tag">Für Schüler*innen</span>
+      <a class="nav-btn primary view-link" href="#" data-view="schueler">Mein Praktikum eintragen und bewerten</a>
     </div>
     <div class="action-group">
-      <span class="kicker">Für Lehrkräfte</span>
-      <a class="nav-btn" href="#">Ich kenne einen Partnerbetrieb</a>
+      <span class="kicker pill-tag">Für Lehrkräfte</span>
+      <a class="nav-btn view-link" href="#" data-view="lehrkraft">Ich kenne einen Partnerbetrieb</a>
     </div>
   </nav>
 </header>
 
+<div id="view-suche" class="view active">
 <div class="hero">
+  <div class="hero-copy">
   <div class="hero-scene">
-    <svg viewBox="0 0 1200 220" preserveAspectRatio="none" aria-hidden="true">
+    <svg viewBox="0 0 1200 220" aria-hidden="true">
       <rect width="1200" height="220" fill="var(--sky-soft)"/>
       <path d="M0 60 q60 -18 130 0 t130 0 t130 0 t130 0 t130 0 t130 0 t130 0 t130 0 t130 0 v160 h-1200 z"
             fill="var(--sky)" opacity=".14"/>
@@ -495,26 +616,12 @@
       <line x1="0" y1="188" x2="1200" y2="188" stroke="var(--ink)" stroke-width="2"/>
     </svg>
   </div>
-  <div class="hero-copy">
     <h1>Willkommen bei der Anna-Sophia-Praktikumsbörse</h1>
     <p>Praktikumsplätze rund um Kranichfeld — automatisch gefunden, von Eltern ergänzt und von Mitschüler*innen bestätigt.</p>
   </div>
 </div>
 
 <main class="results">
-  <div class="results-head">
-    <h2>Bei den folgenden Organisationen kannst du dich zu einem Schülerpraktikum informieren.</h2>
-    <div class="controls">
-      <div class="controls-left">
-        <button class="pill-btn">Ergebnisse filtern ▾</button>
-        <p class="count" id="liveCount">62 <span>Organisationen</span></p>
-      </div>
-      <label class="radius">Umkreis
-        <select><option>25 km</option><option selected>50 km</option><option>75 km</option></select>
-      </label>
-    </div>
-  </div>
-
   <div class="tabs" role="tablist" aria-label="Quelle der Einträge">
     <button class="tab" role="tab" aria-selected="true" data-tab="internet">Aus dem Internet <span class="n">58</span> <span class="star">*</span></button>
     <button class="tab" role="tab" aria-selected="false" data-tab="eltern">Von den Eltern <span class="n">2</span></button>
@@ -524,24 +631,11 @@
   <!-- Aus dem Internet -->
   <section class="panel active" id="panel-internet">
     <p class="panel-note">Automatisch gefunden und von einer KI auf echte Praktikumsangebote geprüft — laufend aktualisiert. <span class="star">*</span></p>
-    <div class="tech-box">
-      <p class="tech-title">Ergebnisse aus vier Verfahren</p>
-      <div class="tech-item">
-        <span class="name">Allgemeiner Crawler</span>
-        <span class="desc">Bundesweite Grundsuche der Hauptplattform, für diese Schule vorgefiltert</span>
-      </div>
-      <div class="tech-item">
-        <span class="name">Regionalcrawler</span>
-        <span class="desc">Vertiefte Zusatzrecherche im 50-km-Umkreis von Kranichfeld</span>
-      </div>
-      <div class="tech-item">
-        <span class="name">Qualitätschecker</span>
-        <span class="desc">KI liest jede Seite inhaltlich, sortiert Fehltreffer und Verneinungen aus</span>
-      </div>
-      <div class="tech-item">
-        <span class="name">Filialcrawler</span>
-        <span class="desc">Findet die konkrete, nächstgelegene Filiale bundesweiter Ketten statt einer Sammelkachel</span>
-      </div>
+    <div class="tech-tags">
+      <span class="pill-tag">Allgemeiner Crawler</span>
+      <span class="pill-tag">Regionalcrawler</span>
+      <span class="pill-tag">Qualitätschecker</span>
+      <span class="pill-tag">Filialcrawler</span>
     </div>
     <div class="cards">
       <article class="card">
@@ -582,11 +676,11 @@
 
   <!-- Von den Eltern -->
   <section class="panel" id="panel-eltern">
-    <p class="panel-note">Von Eltern eingereicht, vor Veröffentlichung von der Schule freigeschaltet. <strong>Noch wenige Einträge — wächst mit jedem Jahrgang.</strong></p>
+    <p class="panel-note">Eltern, die selbst in einem Betrieb arbeiten und dort einen Praktikumsplatz anbieten können — vor Veröffentlichung von der Schule freigeschaltet. <strong>Noch wenige Einträge — wächst mit jedem Jahrgang.</strong></p>
     <div class="cards">
       <article class="card dummy">
         <div class="card-top"><h3>Elektro Hartmann</h3><span class="dist">3,4 km</span></div>
-        <p class="desc">„Mein Sohn konnte letztes Jahr dort ein Praktikum machen, der Chef ist sehr aufgeschlossen." — eingetragen von einem Elternteil.</p>
+        <p class="desc">„Ich arbeite in einem Handwerksbetrieb. Wir können auch zwei Schülerpraktikant*innen aufnehmen." — eingetragen von einem Elternteil, das selbst bei Elektro Hartmann arbeitet.</p>
         <div class="tags"><span class="tag dummy-tag">Dummy-Eintrag</span></div>
         <div class="card-foot">
           <a class="card-link" href="#">Ansehen →</a>
@@ -595,7 +689,7 @@
       </article>
       <article class="card dummy">
         <div class="card-top"><h3>Bäckerei Sonnentau</h3><span class="dist">2,0 km</span></div>
-        <p class="desc">Familienbetrieb, nimmt gern Praktikant*innen aus der Anna-Sophia — einfach vorbeikommen und fragen.</p>
+        <p class="desc">„Wir sind ein kleiner Familienbetrieb und nehmen gern Praktikant*innen von der Anna-Sophia — einfach vorbeikommen und fragen." — eingetragen von einem Elternteil, das die Bäckerei mitführt.</p>
         <div class="tags"><span class="tag dummy-tag">Dummy-Eintrag</span></div>
         <div class="card-foot">
           <a class="card-link" href="#">Ansehen →</a>
@@ -632,6 +726,112 @@
     </div>
   </section>
 </main>
+</div>
+
+<!-- Für Eltern / Ehemalige / Unternehmen -->
+<div id="view-eltern" class="view">
+  <div class="formpage">
+    <a class="back-link view-link" href="#" data-view="suche">← Zurück zur Praktikumsbörse</a>
+    <h1>Ich kann einen Platz anbieten</h1>
+    <p class="lede">Du bist Elternteil, Ehemalige*r oder arbeitest selbst in einem Betrieb, der Schülerpraktika anbietet? Trag ihn hier ein — die Schule schaltet ihn frei, bevor er öffentlich sichtbar wird.</p>
+    <p class="privacy-badge">Kein Name, keine persönlichen Daten nötig</p>
+    <form class="entry-form" data-message="Wir prüfen das Angebot und bringen es in ein Format, so dass es veröffentlicht werden kann.">
+      <div class="field-group">
+        <div class="field">
+          <label for="eltern-betrieb">Name des Betriebs</label>
+          <input type="text" id="eltern-betrieb" required placeholder="z. B. Elektro Hartmann">
+        </div>
+        <div class="field">
+          <label for="eltern-website">Website</label>
+          <input type="url" id="eltern-website" placeholder="https://…">
+        </div>
+        <div class="field">
+          <label for="eltern-text">Was können Schüler*innen dort im Praktikum machen?
+            <span class="hint">Kurz reicht — die Schule bereitet den Eintrag auf.</span>
+          </label>
+          <textarea id="eltern-text" placeholder="z. B. Wir nehmen gern zwei Praktikant*innen im Jahr, Einblick in Werkstatt und Kundenberatung."></textarea>
+        </div>
+      </div>
+      <button type="submit" class="submit-btn">Absenden</button>
+    </form>
+    <div class="processing"><div class="spinner" aria-hidden="true"></div><p></p></div>
+    <div class="success">
+      <span class="tick">✓</span>
+      <h2>Danke!</h2>
+      <p>Die Schule prüft den Eintrag und schaltet ihn frei, sobald er fertig aufbereitet ist.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Für Schüler*innen -->
+<div id="view-schueler" class="view">
+  <div class="formpage">
+    <a class="back-link view-link" href="#" data-view="suche">← Zurück zur Praktikumsbörse</a>
+    <h1>Mein Praktikum eintragen und bewerten</h1>
+    <p class="lede">Wo hast du dein Praktikum gemacht? Trag es ein, damit andere aus deiner Schule wissen, wie es dort wirklich ist.</p>
+    <p class="privacy-badge">Kein Name, keine persönlichen Daten nötig</p>
+    <form class="entry-form" data-message="Wir prüfen das Angebot und bringen es in ein Format, so dass es veröffentlicht werden kann.">
+      <div class="field-group">
+        <div class="field">
+          <label for="schueler-betrieb">Name des Betriebs</label>
+          <input type="text" id="schueler-betrieb" required placeholder="z. B. Kindergarten Sonnenschein">
+        </div>
+        <div class="field">
+          <label for="schueler-website">Website</label>
+          <input type="url" id="schueler-website" placeholder="https://…">
+        </div>
+        <div class="field">
+          <label for="schueler-text">Schreibe gerne kurz, wie es dir gefallen hat
+            <span class="hint">Was hast du gemacht, wie war die Stimmung, würdest du es weiterempfehlen?</span>
+          </label>
+          <textarea id="schueler-text" placeholder="z. B. War richtig schön — man darf viel mit den Kleinen machen, basteln und vorlesen."></textarea>
+        </div>
+      </div>
+      <button type="submit" class="submit-btn">Absenden</button>
+    </form>
+    <div class="processing"><div class="spinner" aria-hidden="true"></div><p></p></div>
+    <div class="success">
+      <span class="tick">✓</span>
+      <h2>Danke!</h2>
+      <p>Dein Erfahrungsbericht wird geprüft und hilft bald anderen aus deiner Schule bei der Suche.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Für Lehrkräfte -->
+<div id="view-lehrkraft" class="view">
+  <div class="formpage">
+    <a class="back-link view-link" href="#" data-view="suche">← Zurück zur Praktikumsbörse</a>
+    <h1>Ich kenne einen Partnerbetrieb</h1>
+    <p class="lede">Manche Betriebe nehmen seit Jahren ganz selbstverständlich Praktikant*innen der Anna-Sophia — nur steht das nirgends. Trag sie hier ein.</p>
+    <p class="privacy-badge">Kein Name, keine persönlichen Daten nötig</p>
+    <form class="entry-form" data-message="Wir prüfen das Angebot und bringen es in ein Format, so dass es veröffentlicht werden kann.">
+      <div class="field-group">
+        <div class="field">
+          <label for="lehrkraft-betrieb">Name des Betriebs</label>
+          <input type="text" id="lehrkraft-betrieb" required placeholder="z. B. Tischlerei Vogel">
+        </div>
+        <div class="field">
+          <label for="lehrkraft-website">Website</label>
+          <input type="url" id="lehrkraft-website" placeholder="https://…">
+        </div>
+        <div class="field">
+          <label for="lehrkraft-text">Was weißt du über den Betrieb als Praktikumsplatz?
+            <span class="hint">z. B. seit wann, wie viele Plätze, wen man ansprechen sollte.</span>
+          </label>
+          <textarea id="lehrkraft-text" placeholder="z. B. Nimmt seit Jahren Praktikant*innen von uns, Ansprechpartner ist der Meister selbst."></textarea>
+        </div>
+      </div>
+      <button type="submit" class="submit-btn">Absenden</button>
+    </form>
+    <div class="processing"><div class="spinner" aria-hidden="true"></div><p></p></div>
+    <div class="success">
+      <span class="tick">✓</span>
+      <h2>Danke!</h2>
+      <p>Die Schule nimmt den Betrieb in die Prüfung auf und schaltet ihn frei, sobald er aufbereitet ist.</p>
+    </div>
+  </div>
+</div>
 
 <footer class="site">
   <span>Anna-Sophia-Praktikumsbörse — ein Angebot der Staatlichen Regelschule „Anna Sophia" Kranichfeld</span>
@@ -647,6 +847,34 @@
       var id = 'panel-' + tab.getAttribute('data-tab');
       var panel = document.getElementById(id);
       if(panel){ panel.classList.add('active'); }
+    });
+  });
+
+  function zeigeView(name){
+    document.querySelectorAll('.view').forEach(function(v){ v.classList.remove('active'); });
+    var ziel = document.getElementById('view-' + name);
+    if(ziel){ ziel.classList.add('active'); window.scrollTo({top:0, behavior:'instant'}); }
+  }
+  document.querySelectorAll('.view-link').forEach(function(link){
+    link.addEventListener('click', function(e){
+      e.preventDefault();
+      zeigeView(link.getAttribute('data-view'));
+    });
+  });
+
+  document.querySelectorAll('form.entry-form').forEach(function(form){
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var wrap = form.closest('.formpage');
+      var verarbeitung = wrap.querySelector('.processing');
+      var erfolg = wrap.querySelector('.success');
+      verarbeitung.querySelector('p').textContent = form.getAttribute('data-message');
+      form.classList.add('hidden');
+      verarbeitung.classList.add('active');
+      setTimeout(function(){
+        verarbeitung.classList.remove('active');
+        erfolg.classList.add('active');
+      }, 2200);
     });
   });
 </script>
