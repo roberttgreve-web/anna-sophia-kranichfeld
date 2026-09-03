@@ -319,6 +319,49 @@
     margin:12px 16px 0;
     flex:1;
   }
+
+  /* ---------- Unternehmen mit Filialen (wie .filialen im Original) ---------- */
+  .filialen{
+    background:var(--akzent);
+    border-radius:16px;
+    padding:24px 24px 26px;
+    margin:0 0 26px;
+  }
+  .fi-kopf h3{
+    font-family:var(--schrift-titel);
+    font-size:1.3rem;
+    font-weight:500;
+    margin:0 0 6px;
+    color:#fff;
+  }
+  .fi-kopf p{ margin:0; color:rgba(255,255,255,.92); font-size:.95rem; max-width:68ch; }
+  .fi-bahn{
+    display:flex;
+    gap:14px;
+    overflow-x:auto;
+    scroll-snap-type:x proximity;
+    padding-top:18px;
+    padding-bottom:8px;
+  }
+  .fi-karte{
+    flex:0 0 clamp(220px, 30vw, 300px);
+    scroll-snap-align:start;
+    background:var(--weiss);
+  }
+  .fi-karte .card-top{ border-color:var(--linie); }
+  .fi-text{
+    font-size:.88rem;
+    color:var(--tinte-weich);
+    line-height:1.45;
+    margin:12px 16px 0;
+    height:calc(1.45em * 3);
+    overflow:hidden;
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:3;
+    line-clamp:3;
+  }
+
   .tags{ display:flex; flex-wrap:wrap; gap:.4rem; margin:0 16px; }
   .tag{
     font-family:var(--schrift);
@@ -574,7 +617,7 @@
 
 <main class="results">
   <div class="tabs" role="tablist" aria-label="Quelle der Einträge">
-    <button class="tab" role="tab" aria-selected="true" data-tab="internet">Aus dem Internet <span class="n">58</span> <span class="star">*</span></button>
+    <button class="tab" role="tab" aria-selected="true" data-tab="internet">Aus dem Internet <span class="n">77</span> <span class="star">*</span></button>
     <button class="tab" role="tab" aria-selected="false" data-tab="eltern">Von den Eltern <span class="n">4</span></button>
     <button class="tab" role="tab" aria-selected="false" data-tab="schueler">Von Mitschüler*innen <span class="n">4</span></button>
   </div>
@@ -590,54 +633,167 @@
     </div>
     <div class="cards">
       <article class="card">
-        <div class="card-top k1"><h3>Autohaus Trautmann</h3><span class="dist">4,1 km</span></div>
-        <p class="desc">Kfz-Mechatroniker*in-Praktikum, Einblick in Werkstatt und Diagnose. Ab Klasse 8.</p>
-        <div class="tags"><span class="tag confirmed">✓ von Mitschüler*in bestätigt</span></div>
+        <div class="card-top k1"><h3>GRAFE GmbH &amp; Co. KG</h3><span class="dist">11,1 km</span></div>
+        <p class="desc">GRAFE ist ein führender Hersteller von Kunststoff-Masterbatches. Im Praktikum kannst du in Bereiche wie Produktion, Forschung, Vertrieb oder IT reinschnuppern.</p>
         <div class="card-foot">
-          <a class="card-link" href="#">Ansehen →</a>
+          <a class="card-link" href="https://www.grafe.com/de/job/schuelerpraktikum-m-w-d/" target="_blank" rel="noopener">Ansehen →</a>
           <button class="report-link">Löschung beantragen</button>
         </div>
       </article>
       <article class="card">
-        <div class="card-top k2"><h3>Seniorenzentrum Am Ehrenberg</h3><span class="dist">2,7 km</span></div>
-        <p class="desc">Schnuppertage in der Pflege, Alltagsbegleitung, Betreuung. Praktikum ganzjährig möglich.</p>
+        <div class="card-top k2"><h3>DMF Werkzeugbau GmbH</h3><span class="dist">14,1 km</span></div>
+        <p class="desc">DMF Werkzeugbau ist ein Unternehmen der Metallbranche, das Werkzeuge und Formen herstellt. Im Praktikum lernst du das Berufsbild des Feinwerkmechanikers kennen und arbeitest aktiv im Betrieb mit.</p>
         <div class="card-foot">
-          <a class="card-link" href="#">Ansehen →</a>
+          <a class="card-link" href="https://www.dmf-werkzeugbau.de/karriere/schuelerpraktika/" target="_blank" rel="noopener">Ansehen →</a>
           <button class="report-link">Löschung beantragen</button>
         </div>
       </article>
       <article class="card">
-        <div class="card-top k3"><h3>Tischlerei Vogel</h3><span class="dist">1,3 km</span></div>
-        <p class="desc">Handwerkliches Praktikum in der Möbeltischlerei, kleine Werkstatt, persönliche Anleitung.</p>
+        <div class="card-top k3"><h3>AWO Soziale Dienste Rudolstadt gGmbH</h3><span class="dist">15,6 km</span></div>
+        <p class="desc">AWO Rudolstadt ist ein sozialer Dienstleister mit Einrichtungen für Kinder, Jugendliche, Familien und Senioren. Im Praktikum kannst du in den Berufsalltag sozialer Berufe schnuppern.</p>
         <div class="card-foot">
-          <a class="card-link" href="#">Ansehen →</a>
+          <a class="card-link" href="https://awo-rudolstadt.de/Karriere-Aus-und-Weiterbildung" target="_blank" rel="noopener">Ansehen →</a>
           <button class="report-link">Löschung beantragen</button>
         </div>
       </article>
       <article class="card">
-        <div class="card-top k4"><h3>Stadtverwaltung Kranichfeld</h3><span class="dist">0,6 km</span></div>
-        <p class="desc">Einblick ins Bürgerbüro und die Verwaltung, Bewerbung formlos beim Hauptamt.</p>
+        <div class="card-top k4"><h3>IBYKUS AG für Informationstechnologie</h3><span class="dist">15,7 km</span></div>
+        <p class="desc">IBYKUS AG ist ein IT-Unternehmen. Im Praktikum bekommst du Einblicke in Softwareentwicklung oder IT-Infrastruktur.</p>
         <div class="card-foot">
-          <a class="card-link" href="#">Ansehen →</a>
+          <a class="card-link" href="https://www.ibykus.de/karriere/stellenangebote/stellenangebote-detail/j/39/praktikant-mwd-fur-ein-praktikum-zur-berufsorientierung" target="_blank" rel="noopener">Ansehen →</a>
           <button class="report-link">Löschung beantragen</button>
         </div>
       </article>
       <article class="card">
-        <div class="card-top k5"><h3>IT-Systemhaus Kranichfeld</h3><span class="dist">1,1 km</span></div>
-        <p class="desc">Einblick in Netzwerkbetreuung, Support und kleine Programmierprojekte. Ab Klasse 9.</p>
+        <div class="card-top k5"><h3>Wasser- und Abwasserzweckverband Arnstadt und Umgebung</h3><span class="dist">15,7 km</span></div>
+        <p class="desc">Wasser- und Abwasserzweckverband, der Trinkwasserversorgung und Abwasserentsorgung betreibt. Praktikum in den Bereichen Trinkwasser oder Abwasser, mit Einblick in technische Arbeit vor Ort ab 06:45 Uhr.</p>
         <div class="card-foot">
-          <a class="card-link" href="#">Ansehen →</a>
+          <a class="card-link" href="https://www.wazv-arnstadt.de/job-karriere/schuelerpraktikum" target="_blank" rel="noopener">Ansehen →</a>
           <button class="report-link">Löschung beantragen</button>
         </div>
       </article>
       <article class="card">
-        <div class="card-top k6"><h3>Landwirtschaftsbetrieb Rehbein</h3><span class="dist">5,4 km</span></div>
-        <p class="desc">Mitarbeit im Ackerbau und in der Tierhaltung, je nach Jahreszeit. Frühes Aufstehen nötig.</p>
+        <div class="card-top k6"><h3>WLS Spedition GmbH</h3><span class="dist">15,7 km</span></div>
+        <p class="desc">WLS Spedition ist ein Logistik- und Transportunternehmen mit über 400 Mitarbeitenden. Im Praktikum kannst du Berufe wie Speditionskaufmann, Fachlagerist oder Berufskraftfahrer kennenlernen.</p>
         <div class="card-foot">
-          <a class="card-link" href="#">Ansehen →</a>
+          <a class="card-link" href="https://www.wls-spedition.de/stellenangebot/praktikum-schuelerpraktikum-schnuppertag-2/" target="_blank" rel="noopener">Ansehen →</a>
           <button class="report-link">Löschung beantragen</button>
         </div>
       </article>
+      <article class="card">
+        <div class="card-top k1"><h3>EPZ Industrietechnik GmbH</h3><span class="dist">16,1 km</span></div>
+        <p class="desc">EPZ Industrietechnik ist ein metallverarbeitender Betrieb in Arnstadt. Im Praktikum kannst du Einblicke in Präzisionsfertigung gewinnen und praktisches Talent für Metallberufe testen.</p>
+        <div class="card-foot">
+          <a class="card-link" href="https://www.epz-arnstadt.de/karriere" target="_blank" rel="noopener">Ansehen →</a>
+          <button class="report-link">Löschung beantragen</button>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card-top k2"><h3>Marienstift Arnstadt</h3><span class="dist">16,1 km</span></div>
+        <p class="desc">Marienstift Arnstadt ist eine gemeinnützige Einrichtung mit Fachklinik, Pflege und sozialen Diensten. Im Praktikum kannst du erste Einblicke in den Pflegebereich gewinnen.</p>
+        <div class="card-foot">
+          <a class="card-link" href="https://karriere.marienstift-arnstadt.de/erlebnis-marienstift" target="_blank" rel="noopener">Ansehen →</a>
+          <button class="report-link">Löschung beantragen</button>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card-top k3"><h3>N3 Engine Overhaul Services GmbH &amp; Co. KG</h3><span class="dist">16,1 km</span></div>
+        <p class="desc">N3 ist ein moderner Instandhaltungsbetrieb für Flugzeugtriebwerke. Im Praktikum arbeitest du in der Ausbildungswerkstatt, baust einen eigenen Flieger und lernst den Beruf des Fluggerätmechanikers kennen.</p>
+        <div class="card-foot">
+          <a class="card-link" href="https://karriere.n3eos.com/Schuelerpraktikum-Zeitraum-1910-23102026-eng-j696.html" target="_blank" rel="noopener">Ansehen →</a>
+          <button class="report-link">Löschung beantragen</button>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card-top k4"><h3>Landeshauptstadt Erfurt</h3><span class="dist">18,6 km</span></div>
+        <p class="desc">Die Landeshauptstadt Erfurt ist die größte Arbeitgeberin der Stadt mit rund 3.700 Beschäftigten in vielfältigen Berufen. Ein Praktikum findet in einem der vielen Amts- und Einsatzbereiche der Stadtverwaltung statt.</p>
+        <div class="card-foot">
+          <a class="card-link" href="https://www.erfurt.de/ef/de/leben/bildung/bildungsstadt/navigator_schule-beruf/berufsorientierung/125309.html" target="_blank" rel="noopener">Ansehen →</a>
+          <button class="report-link">Löschung beantragen</button>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card-top k5"><h3>Herrschmidt Architekten BDA Partnerschaft mbB</h3><span class="dist">18,6 km</span></div>
+        <p class="desc">Herrschmidt Architekten ist ein Architekturbüro in Erfurt. Im Praktikum lernst du den Arbeitsalltag in einem Architekturbüro kennen und unterstützt das Team bei verschiedenen Aufgaben.</p>
+        <div class="card-foot">
+          <a class="card-link" href="https://www.herrschmidt-architekten.de/karriere/" target="_blank" rel="noopener">Ansehen →</a>
+          <button class="report-link">Löschung beantragen</button>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card-top k6"><h3>NÜTHEN Restaurierungen GmbH &amp; Co. KG</h3><span class="dist">18,6 km</span></div>
+        <p class="desc">NÜTHEN ist Marktführer in Restaurierung und Denkmalpflege von historischen Gebäuden. Im Schülerpraktikum lernst du die Grundlagen des Maler- und Kirchenmalerhandwerks oder der Natursteinbearbeitung.</p>
+        <div class="card-foot">
+          <a class="card-link" href="https://www.nuethen-sucht-dich.de/ausbildung/schuelerpraktikum" target="_blank" rel="noopener">Ansehen →</a>
+          <button class="report-link">Löschung beantragen</button>
+        </div>
+      </article>
+    </div>
+    <div class="filialen">
+      <div class="fi-kopf">
+        <div>
+          <h3>Unternehmen mit Filialen</h3>
+          <p>Es gibt ganz viele Unternehmen mit Filialen, die Schülerpraktika anbieten. Oft musst du einfach vorbeigehen. Mehr Infos findest du hier.</p>
+        </div>
+      </div>
+      <div class="fi-bahn">
+        <article class="card fi-karte">
+          <div class="card-top"><h3>Berliner Sparkasse</h3></div>
+          <p class="fi-text">Die Berliner Sparkasse ist eine Bank. Im Praktikum lernst du Kontoführung, Zahlungsverkehr und den Alltag in einem BeratungsCenter kennen.</p>
+          <div class="card-foot">
+            <a class="card-link" href="https://www.berliner-sparkasse.de/de/home/ihre-sparkasse/dein-job/schuelerpraktikum.html" target="_blank" rel="noopener">Zur Karriereseite →</a>
+          </div>
+        </article>
+        <article class="card fi-karte">
+          <div class="card-top"><h3>PENNY Markt GmbH</h3></div>
+          <p class="fi-text">PENNY ist ein Discounter-Supermarkt. Im Schulpraktikum kannst du die Tätigkeiten in einem Markt kennenlernen und dich direkt im nächsten PENNY-Markt bewerben.</p>
+          <div class="card-foot">
+            <a class="card-link" href="https://karriere.penny.de/ausbildung" target="_blank" rel="noopener">Zur Karriereseite →</a>
+          </div>
+        </article>
+        <article class="card fi-karte">
+          <div class="card-top"><h3>ALDI Nord Deutschland Stiftung &amp; Co. KG</h3></div>
+          <p class="fi-text">ALDI Nord ist ein großer Lebensmittel-Discounter. Im Praktikum arbeitest du im Verkauf in einer Filiale.</p>
+          <div class="card-foot">
+            <a class="card-link" href="https://www.aldi-nord.de/karriere/detail/schulerpraktikum-im-verkauf-m-w-d-lingen-282750.html" target="_blank" rel="noopener">Zur Karriereseite →</a>
+          </div>
+        </article>
+        <article class="card fi-karte">
+          <div class="card-top"><h3>ALDI SÜD</h3></div>
+          <p class="fi-text">ALDI SÜD ist ein großer Lebensmittel-Discounter in Süd- und Westdeutschland. Beim Schülerpraktikum lernst du den Alltag in einer Filiale oder einem Logistikzentrum kennen – in den Ferien sogar bezahlt.</p>
+          <div class="card-foot">
+            <a class="card-link" href="https://karriere.aldi-sued.de/schueler/ausbildung-und-studium/schuelerpraktikum" target="_blank" rel="noopener">Zur Karriereseite →</a>
+          </div>
+        </article>
+        <article class="card fi-karte">
+          <div class="card-top"><h3>Deutsche Bahn AG</h3></div>
+          <p class="fi-text">Die Deutsche Bahn bietet Schülerpraktika im Verkehrs-, gewerblich-technischen und kaufmännischen Bereich an. Du kannst Berufe kennenlernen, mit Azubis austauschen und deine Chancen auf einen Ausbildungsplatz erhöhen.</p>
+          <div class="card-foot">
+            <a class="card-link" href="https://db.jobs/de-de/dein-einstieg/schuelerpraktikum" target="_blank" rel="noopener">Zur Karriereseite →</a>
+          </div>
+        </article>
+        <article class="card fi-karte">
+          <div class="card-top"><h3>Deutsche Bank AG</h3></div>
+          <p class="fi-text">Die Deutsche Bank ist eine der größten Banken Deutschlands. Im Praktikum kannst du entweder in einer Filiale Kundenkontakt erleben oder im Technologie-Bereich an digitalen Projekten mitwirken.</p>
+          <div class="card-foot">
+            <a class="card-link" href="https://careers.db.com/ausbildung-studium/schuelerpraktikum/?language_id=3" target="_blank" rel="noopener">Zur Karriereseite →</a>
+          </div>
+        </article>
+        <article class="card fi-karte">
+          <div class="card-top"><h3>Dirk Rossmann GmbH</h3></div>
+          <p class="fi-text">ROSSMANN ist eine große Drogeriemarktkette. Im IT-Praktikum lernst du Berufe wie Fachinformatiker kennen und schaust hinter die Kulissen der digitalen Prozesse.</p>
+          <div class="card-foot">
+            <a class="card-link" href="https://jobs.rossmann.de/stellenanzeige/schuelerpraktikum-it-2026-in-der-rossmann-zentrale-in-burgwedel-am-standort-burgwedel-6-151888.html" target="_blank" rel="noopener">Zur Karriereseite →</a>
+          </div>
+        </article>
+        <article class="card fi-karte">
+          <div class="card-top"><h3>EDEKA-Verbund</h3></div>
+          <p class="fi-text">EDEKA ist Deutschlands größter Lebensmitteleinzelhandel mit über 11.300 Märkten. Im Schülerpraktikum sammelst du Einblicke in die Arbeitswelt des Einzelhandels direkt in einem Markt in deiner Nähe.</p>
+          <div class="card-foot">
+            <a class="card-link" href="https://verbund.edeka/karriere/karrierem%C3%B6glichkeiten/f%C3%BCr-sch%C3%BCler/praktikum.html" target="_blank" rel="noopener">Zur Karriereseite →</a>
+          </div>
+        </article>
+      </div>
     </div>
   </section>
 
