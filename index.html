@@ -94,12 +94,16 @@
 
   /* ---------- Kopfleiste (wie .topbar auf schuelerpraktikum.de) ---------- */
   header.top{
+    background:var(--akzent);
+  }
+  header.top .topbar-wrap{
     display:flex;
     align-items:center;
     justify-content:space-between;
     gap:1rem;
+    max-width:1080px;
+    margin:0 auto;
     padding:.75rem clamp(16px,4vw,40px);
-    background:var(--akzent);
   }
   .brand{
     display:flex;
@@ -178,7 +182,7 @@
   @keyframes pfeilRein{ from{ transform:rotate(182deg); } to{ transform:rotate(204deg); } }
   @media (prefers-reduced-motion:reduce){ .hero-pfeil{ animation:none; } }
   @media (max-width:760px){ .hero-pfeil{ display:none; } }
-  .hero-grid{ max-width:640px; }
+  .hero-text{ max-width:800px; }
   .hero-text h1{
     font-size:clamp(1.6rem,3.5vw,2.7rem);
     font-weight:500;
@@ -335,6 +339,17 @@
     color:#fff;
   }
   .fi-kopf p{ margin:0; color:rgba(255,255,255,.92); font-size:.95rem; max-width:68ch; }
+  .fi-kopf{ display:flex; align-items:flex-end; gap:20px; flex-wrap:wrap; }
+  .fi-pfeile{ margin-left:auto; display:flex; gap:8px; flex:none; }
+  .fi-pfeil{
+    width:40px; height:40px; border-radius:50%;
+    border:1px solid rgba(255,255,255,.5);
+    background:transparent; color:#fff; font-size:1.05rem; cursor:pointer;
+    line-height:1; display:flex; align-items:center; justify-content:center;
+    transition:background .15s, border-color .15s;
+  }
+  .fi-pfeil:hover{ background:rgba(255,255,255,.16); border-color:#fff; }
+  .fi-pfeil:focus-visible{ outline:2px solid #fff; outline-offset:2px; }
   .fi-bahn{
     display:flex;
     gap:14px;
@@ -577,6 +592,7 @@
 <p class="concept-flag">KONZEPT-ANSICHT — BEISPIELDATEN, KEINE ECHTEN ANGEBOTE</p>
 
 <header class="top">
+  <div class="topbar-wrap">
   <div class="brand">
     <svg viewBox="0 0 40 40" aria-hidden="true">
       <rect width="40" height="40" rx="8" fill="rgba(255,255,255,.16)"/>
@@ -603,12 +619,13 @@
       <span class="nav-btn-sub">Für Lehrkräfte</span>
     </a>
   </nav>
+  </div>
 </header>
 
 <div id="view-suche" class="view active">
 <section class="hero">
   <img class="hero-pfeil" alt="" aria-hidden="true" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzE1IiBoZWlnaHQ9IjcxNSIgdmlld0JveD0iMCAwIDcxNSA3MTUiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik0xMDQuNjIgMTA0LjYxOUMyNDQuMTEyIC0zNC44NzMzIDQ3MC4yNzMgLTM0Ljg3MjcgNjA5Ljc2NiAxMDQuNjE5Qzc0OS4yNTggMjQ0LjExMSA3NDkuMjU4IDQ3MC4yNzIgNjA5Ljc2NiA2MDkuNzY0QzQ3MC4yNzQgNzQ5LjI1NiAyNDQuMTEyIDc0OS4yNTcgMTA0LjYyIDYwOS43NjVDLTM0Ljg3MjEgNDcwLjI3MyAtMzQuODcyMiAyNDQuMTExIDEwNC42MiAxMDQuNjE5Wk0yMzcuMDM4IDI2NS42MDdMNDEyLjQyMyAyNjUuNjA3TDE5My41MiA0ODQuNTFMMjMzLjA0MyA1MjQuMDMyTDQ1MC43NjQgMzA2LjMxMUw0NTAuNzY1IDQ3OS4zNzRMNTA2LjY1OCA0NzkuMzc0TDUwNi42NTggMjEwLjI1NEw1MDYuMTU3IDIxMC4yNTRMNTA2LjE1NyAyMDkuNzEzTDIzNy4wMzcgMjA5LjcxM0wyMzcuMDM4IDI2NS42MDdaIiBmaWxsPSIjRkZFQzVDIi8+Cjwvc3ZnPgo=">
-  <div class="hero-wrap hero-grid">
+  <div class="hero-wrap">
     <div class="hero-text">
       <h1>Die Plattform rund um <em>Schülerpraktika</em> in der Region unserer Schule</h1>
     </div>
@@ -617,7 +634,7 @@
 
 <main class="results">
   <div class="tabs" role="tablist" aria-label="Quelle der Einträge">
-    <button class="tab" role="tab" aria-selected="true" data-tab="internet">Aus dem Internet <span class="n">77</span> <span class="star">*</span></button>
+    <button class="tab" role="tab" aria-selected="true" data-tab="internet">Aus dem Internet <span class="n">85</span> <span class="star">*</span></button>
     <button class="tab" role="tab" aria-selected="false" data-tab="eltern">Von den Eltern <span class="n">4</span></button>
     <button class="tab" role="tab" aria-selected="false" data-tab="schueler">Von Mitschüler*innen <span class="n">4</span></button>
   </div>
@@ -735,8 +752,12 @@
           <h3>Unternehmen mit Filialen</h3>
           <p>Es gibt ganz viele Unternehmen mit Filialen, die Schülerpraktika anbieten. Oft musst du einfach vorbeigehen. Mehr Infos findest du hier.</p>
         </div>
+        <div class="fi-pfeile">
+          <button class="fi-pfeil" data-fi-dir="-1" aria-label="Zurück" type="button">←</button>
+          <button class="fi-pfeil" data-fi-dir="1" aria-label="Weiter" type="button">→</button>
+        </div>
       </div>
-      <div class="fi-bahn">
+      <div class="fi-bahn" id="fiBahn">
         <article class="card fi-karte">
           <div class="card-top"><h3>Berliner Sparkasse</h3></div>
           <p class="fi-text">Die Berliner Sparkasse ist eine Bank. Im Praktikum lernst du Kontoführung, Zahlungsverkehr und den Alltag in einem BeratungsCenter kennen.</p>
@@ -1038,4 +1059,15 @@
       }, 2200);
     });
   });
+
+  var fiBahn = document.getElementById('fiBahn');
+  if (fiBahn) {
+    document.querySelectorAll('.fi-pfeil').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var karte = fiBahn.querySelector('.fi-karte');
+        var schritt = karte ? karte.getBoundingClientRect().width + 14 : 300;
+        fiBahn.scrollBy({ left: schritt * Number(btn.getAttribute('data-fi-dir')), behavior: 'smooth' });
+      });
+    });
+  }
 </script>
