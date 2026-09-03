@@ -120,21 +120,7 @@
     color:rgba(255,255,255,.82);
     font-size:.72rem;
   }
-  nav.actions{ display:flex; gap:1.1rem; }
-  .action-group{
-    display:flex;
-    flex-direction:column;
-    align-items:flex-end;
-    gap:.3rem;
-  }
-  .kicker.pill-tag{
-    font-family:var(--schrift);
-    font-weight:700;
-    font-size:.6rem;
-    letter-spacing:.03em;
-    text-transform:uppercase;
-    padding:.35em .75em;
-  }
+  nav.actions{ display:flex; gap:.7rem; }
   .nav-btn.gated{
     background:transparent;
     border-style:dashed;
@@ -142,14 +128,16 @@
     color:rgba(255,255,255,.85);
   }
   .nav-btn{
-    display:inline-flex;
-    align-items:center;
-    gap:.4em;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:.2rem;
     background:transparent;
     border:1.5px solid rgba(255,255,255,.6);
     color:#fff;
     font-weight:700;
     font-size:.84rem;
+    line-height:1.25;
     padding:.5em .9em;
     border-radius:3px;
     cursor:pointer;
@@ -157,12 +145,21 @@
     white-space:nowrap;
     transition:background .15s ease, border-color .15s ease;
   }
+  .nav-btn-sub{
+    font-family:var(--schrift);
+    font-weight:400;
+    font-size:.66rem;
+    letter-spacing:.02em;
+    text-transform:uppercase;
+    opacity:.78;
+  }
   .nav-btn:hover{ background:rgba(255,255,255,.16); border-color:#fff; }
   .nav-btn.primary{
     background:#fff;
     border-color:#fff;
     color:var(--akzent-dunkel);
   }
+  .nav-btn.primary .nav-btn-sub{ opacity:.65; }
   .nav-btn.primary:hover{ background:#fff; opacity:.92; }
   @media (max-width:900px){
     nav.actions{ display:none; }
@@ -172,7 +169,7 @@
   .hero{ background:var(--weiss); padding:52px 0 44px; position:relative; overflow:hidden; }
   .hero-wrap{ max-width:1080px; margin:0 auto; padding:0 clamp(16px,4vw,40px); position:relative; z-index:1; }
   .hero-pfeil{
-    position:absolute; top:-120px; right:-110px; z-index:0;
+    position:absolute; top:-70px; right:-60px; z-index:0;
     width:clamp(180px,22vw,300px); aspect-ratio:1/1;
     pointer-events:none; user-select:none;
     transform:rotate(204deg);
@@ -181,8 +178,7 @@
   @keyframes pfeilRein{ from{ transform:rotate(182deg); } to{ transform:rotate(204deg); } }
   @media (prefers-reduced-motion:reduce){ .hero-pfeil{ animation:none; } }
   @media (max-width:760px){ .hero-pfeil{ display:none; } }
-  .hero-grid{ display:grid; grid-template-columns:1.15fr 1fr; gap:40px; align-items:center; }
-  @media (max-width:860px){ .hero-grid{ grid-template-columns:1fr; gap:28px; } .hero{ padding:36px 0 32px; } }
+  .hero-grid{ max-width:640px; }
   .hero-text h1{
     font-size:clamp(1.6rem,3.5vw,2.7rem);
     font-weight:500;
@@ -192,9 +188,7 @@
   .hero-text h1 .um{ display:block; }
   .hero-text h1 em{ font-style:normal; color:var(--akzent); }
   .hero-text p{ max-width:46ch; color:var(--grau); margin:0; font-size:1.06rem; }
-  .hero-scene{ width:min(280px, 100%); margin:0 auto; }
-  .hero-scene svg{ width:100%; height:auto; display:block; }
-  @media (max-width:860px){ .hero-scene{ display:none; } }
+
 
   /* ---------- Ergebnisse (wie .ergebnisse auf schuelerpraktikum.de) ---------- */
   .results{
@@ -306,6 +300,12 @@
     margin:0;
     line-height:1.22;
     letter-spacing:-.005em;
+    height:calc(1.22em * 3);
+    overflow:hidden;
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:3;
+    line-clamp:3;
   }
   .dist{
     font-size:.72rem;
@@ -544,21 +544,21 @@
       <rect x="24.6" y="29.3" width="3.4" height="4.7" fill="var(--akzent)"/>
       <circle cx="9" cy="18" r="3.4" fill="var(--zm-gelb)"/>
     </svg>
-    <span>Anna-Sophia-Praktikumsbörse<small>Staatliche Regelschule „Anna Sophia" Kranichfeld</small></span>
+    <span>Anna-Sophia-Praktikumsbörse</span>
   </div>
   <nav class="actions">
-    <div class="action-group">
-      <span class="kicker pill-tag">Für Eltern / Ehemalige / Unternehmen</span>
-      <a class="nav-btn view-link" href="#" data-view="eltern">Ich kann einen Platz anbieten</a>
-    </div>
-    <div class="action-group">
-      <span class="kicker pill-tag">Für Schüler*innen</span>
-      <a class="nav-btn primary view-link" href="#" data-view="schueler">Mein Praktikum eintragen und bewerten</a>
-    </div>
-    <div class="action-group">
-      <span class="kicker pill-tag">Für Lehrkräfte</span>
-      <a class="nav-btn view-link" href="#" data-view="lehrkraft">Ich kenne einen Partnerbetrieb</a>
-    </div>
+    <a class="nav-btn view-link" href="#" data-view="eltern">
+      Ich kann einen Platz anbieten
+      <span class="nav-btn-sub">Für Eltern / Ehemalige / Unternehmen</span>
+    </a>
+    <a class="nav-btn primary view-link" href="#" data-view="schueler">
+      Mein Praktikum eintragen und bewerten
+      <span class="nav-btn-sub">Für Schüler*innen</span>
+    </a>
+    <a class="nav-btn view-link" href="#" data-view="lehrkraft">
+      Ich kenne einen Partnerbetrieb
+      <span class="nav-btn-sub">Für Lehrkräfte</span>
+    </a>
   </nav>
 </header>
 
@@ -567,58 +567,16 @@
   <img class="hero-pfeil" alt="" aria-hidden="true" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzE1IiBoZWlnaHQ9IjcxNSIgdmlld0JveD0iMCAwIDcxNSA3MTUiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik0xMDQuNjIgMTA0LjYxOUMyNDQuMTEyIC0zNC44NzMzIDQ3MC4yNzMgLTM0Ljg3MjcgNjA5Ljc2NiAxMDQuNjE5Qzc0OS4yNTggMjQ0LjExMSA3NDkuMjU4IDQ3MC4yNzIgNjA5Ljc2NiA2MDkuNzY0QzQ3MC4yNzQgNzQ5LjI1NiAyNDQuMTEyIDc0OS4yNTcgMTA0LjYyIDYwOS43NjVDLTM0Ljg3MjEgNDcwLjI3MyAtMzQuODcyMiAyNDQuMTExIDEwNC42MiAxMDQuNjE5Wk0yMzcuMDM4IDI2NS42MDdMNDEyLjQyMyAyNjUuNjA3TDE5My41MiA0ODQuNTFMMjMzLjA0MyA1MjQuMDMyTDQ1MC43NjQgMzA2LjMxMUw0NTAuNzY1IDQ3OS4zNzRMNTA2LjY1OCA0NzkuMzc0TDUwNi42NTggMjEwLjI1NEw1MDYuMTU3IDIxMC4yNTRMNTA2LjE1NyAyMDkuNzEzTDIzNy4wMzcgMjA5LjcxM0wyMzcuMDM4IDI2NS42MDdaIiBmaWxsPSIjRkZFQzVDIi8+Cjwvc3ZnPgo=">
   <div class="hero-wrap hero-grid">
     <div class="hero-text">
-      <h1>Willkommen bei der<span class="um"><em>Anna-Sophia</em>-Praktikumsbörse</span></h1>
-      <p>Praktikumsplätze rund um Kranichfeld — automatisch gefunden, von Eltern ergänzt und von Mitschüler*innen bestätigt.</p>
+      <h1>Willkommen bei der Schülerpraktikumsbörse der<span class="um">Staatlichen Regelschule „<em>Anna Sophia</em>" Kranichfeld</span></h1>
     </div>
-  <div class="hero-scene">
-    <svg viewBox="0 0 1200 220" aria-hidden="true">
-      <rect width="1200" height="220" fill="var(--sky-soft)"/>
-      <path d="M0 60 q60 -18 130 0 t130 0 t130 0 t130 0 t130 0 t130 0 t130 0 t130 0 t130 0 v160 h-1200 z"
-            fill="var(--sky)" opacity=".14"/>
-      <!-- Schloss-Silhouette -->
-      <g fill="var(--stone)" opacity=".55">
-        <rect x="560" y="70" width="14" height="46" />
-        <rect x="553" y="62" width="28" height="12" />
-        <rect x="580" y="86" width="70" height="30" />
-        <rect x="650" y="96" width="10" height="20" />
-      </g>
-      <!-- Baumreihe -->
-      <g fill="var(--leaf)">
-        <ellipse cx="70" cy="150" rx="46" ry="34"/>
-        <ellipse cx="130" cy="165" rx="30" ry="24"/>
-        <ellipse cx="1080" cy="150" rx="50" ry="36"/>
-        <ellipse cx="1145" cy="168" rx="32" ry="24"/>
-      </g>
-      <!-- Schulgebäude -->
-      <g>
-        <rect x="230" y="118" width="740" height="70" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5"/>
-        <rect x="230" y="112" width="740" height="8" fill="var(--ink)"/>
-        <g fill="var(--sky-soft)" stroke="var(--ink)" stroke-width="1.6">
-          <rect x="255" y="132" width="44" height="26"/>
-          <rect x="315" y="132" width="44" height="26"/>
-          <rect x="375" y="132" width="44" height="26"/>
-          <rect x="435" y="132" width="44" height="26"/>
-          <rect x="495" y="132" width="30" height="46" fill="var(--stone-soft)"/>
-          <rect x="545" y="132" width="44" height="26"/>
-          <rect x="605" y="132" width="44" height="26"/>
-          <rect x="665" y="132" width="44" height="26"/>
-          <rect x="725" y="132" width="44" height="26"/>
-          <rect x="785" y="132" width="44" height="26"/>
-          <rect x="845" y="132" width="44" height="26"/>
-          <rect x="905" y="132" width="44" height="26"/>
-        </g>
-      </g>
-      <line x1="0" y1="188" x2="1200" y2="188" stroke="var(--ink)" stroke-width="2"/>
-    </svg>
-  </div>
   </div>
 </section>
 
 <main class="results">
   <div class="tabs" role="tablist" aria-label="Quelle der Einträge">
     <button class="tab" role="tab" aria-selected="true" data-tab="internet">Aus dem Internet <span class="n">58</span> <span class="star">*</span></button>
-    <button class="tab" role="tab" aria-selected="false" data-tab="eltern">Von den Eltern <span class="n">2</span></button>
-    <button class="tab" role="tab" aria-selected="false" data-tab="schueler">Von Mitschüler*innen <span class="n">2</span></button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="eltern">Von den Eltern <span class="n">4</span></button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="schueler">Von Mitschüler*innen <span class="n">4</span></button>
   </div>
 
   <!-- Aus dem Internet -->
@@ -664,6 +622,22 @@
           <button class="report-link">Löschung beantragen</button>
         </div>
       </article>
+      <article class="card">
+        <div class="card-top k5"><h3>IT-Systemhaus Kranichfeld</h3><span class="dist">1,1 km</span></div>
+        <p class="desc">Einblick in Netzwerkbetreuung, Support und kleine Programmierprojekte. Ab Klasse 9.</p>
+        <div class="card-foot">
+          <a class="card-link" href="#">Ansehen →</a>
+          <button class="report-link">Löschung beantragen</button>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card-top k6"><h3>Landwirtschaftsbetrieb Rehbein</h3><span class="dist">5,4 km</span></div>
+        <p class="desc">Mitarbeit im Ackerbau und in der Tierhaltung, je nach Jahreszeit. Frühes Aufstehen nötig.</p>
+        <div class="card-foot">
+          <a class="card-link" href="#">Ansehen →</a>
+          <button class="report-link">Löschung beantragen</button>
+        </div>
+      </article>
     </div>
   </section>
 
@@ -683,6 +657,24 @@
       <article class="card dummy">
         <div class="card-top k6"><h3>Bäckerei Sonnentau</h3><span class="dist">2,0 km</span></div>
         <p class="desc">„Wir sind ein kleiner Familienbetrieb und nehmen gern Praktikant*innen von der Anna-Sophia — einfach vorbeikommen und fragen." — eingetragen von einem Elternteil, das die Bäckerei mitführt.</p>
+        <div class="tags"><span class="tag dummy-tag">Dummy-Eintrag</span></div>
+        <div class="card-foot">
+          <a class="card-link" href="#">Ansehen →</a>
+          <button class="report-link">Löschung beantragen</button>
+        </div>
+      </article>
+      <article class="card dummy">
+        <div class="card-top k1"><h3>Friseursalon Haarwerk</h3><span class="dist">1,6 km</span></div>
+        <p class="desc">„Ich schneide selbst bei uns im Salon — Praktikant*innen dürfen zuschauen und beim Empfang mithelfen." — eingetragen von einem Elternteil, dem der Salon gehört.</p>
+        <div class="tags"><span class="tag dummy-tag">Dummy-Eintrag</span></div>
+        <div class="card-foot">
+          <a class="card-link" href="#">Ansehen →</a>
+          <button class="report-link">Löschung beantragen</button>
+        </div>
+      </article>
+      <article class="card dummy">
+        <div class="card-top k2"><h3>Landgasthof Zum Löwen</h3><span class="dist">3,9 km</span></div>
+        <p class="desc">„Wir führen den Gasthof in dritter Generation und zeigen gern, wie Küche und Service zusammenspielen." — eingetragen von einem Elternteil aus dem Familienbetrieb.</p>
         <div class="tags"><span class="tag dummy-tag">Dummy-Eintrag</span></div>
         <div class="card-foot">
           <a class="card-link" href="#">Ansehen →</a>
@@ -710,6 +702,26 @@
         <div class="card-top k2"><h3>Physiotherapie Kranichfeld</h3><span class="dist">0,9 km</span></div>
         <blockquote class="experience">„Durfte bei Übungen zuschauen und beim Aufräumen helfen. Sehr freundliches Team, klare Absprachen vorher per Mail."</blockquote>
         <p class="byline">— Klasse 8, Praktikum im Januar</p>
+        <div class="tags"><span class="tag dummy-tag">Dummy-Eintrag</span></div>
+        <div class="card-foot">
+          <a class="card-link" href="#">Ansehen →</a>
+          <button class="report-link">Löschung beantragen</button>
+        </div>
+      </article>
+      <article class="card dummy">
+        <div class="card-top k3"><h3>Grundschule Kranichfeld</h3><span class="dist">0,4 km</span></div>
+        <blockquote class="experience">„Man merkt schnell, wie viel Geduld der Job braucht — aber es macht Spaß, den Kindern beim Lesenlernen zuzuschauen."</blockquote>
+        <p class="byline">— Klasse 9, Praktikum im Mai</p>
+        <div class="tags"><span class="tag dummy-tag">Dummy-Eintrag</span></div>
+        <div class="card-foot">
+          <a class="card-link" href="#">Ansehen →</a>
+          <button class="report-link">Löschung beantragen</button>
+        </div>
+      </article>
+      <article class="card dummy">
+        <div class="card-top k4"><h3>Tierarztpraxis Dr. Meyer</h3><span class="dist">2,3 km</span></div>
+        <blockquote class="experience">„Durfte bei kleineren Untersuchungen zuschauen, war teils ganz schön aufregend. Nichts für schwache Nerven, aber spannend."</blockquote>
+        <p class="byline">— Klasse 10, Praktikum im September</p>
         <div class="tags"><span class="tag dummy-tag">Dummy-Eintrag</span></div>
         <div class="card-foot">
           <a class="card-link" href="#">Ansehen →</a>
@@ -869,3 +881,5 @@
         erfolg.classList.add('active');
       }, 2200);
     });
+  });
+</script>
